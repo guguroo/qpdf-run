@@ -1,6 +1,6 @@
 {
   "name": "qpdf-run",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "Run qpdf WASM in the browser with a Uint8Array-first API.",
   "exports": {
     ".": {
@@ -31,12 +31,15 @@
   ],
   "scripts": {
     "build": "npm run check",
+    "build:wasm": "bash scripts/wasm/build.sh",
     "check": "node --check src/*.js scripts/*.mjs",
+    "check:wasm-memory": "node scripts/check-wasm-memory.mjs vendor/qpdf/lib/qpdf.wasm",
     "demo:browser": "serve . --listen 8080",
     "prepack": "npm run check",
     "serve": "serve . --listen 8080",
     "smoke:browser": "node scripts/browser-smoke.mjs",
-    "test": "npm run check && npm run smoke:browser"
+    "test": "npm run check && npm run smoke:browser",
+    "test:wasm": "node scripts/wasm-selftest.mjs vendor/qpdf/lib/qpdf.js vendor/qpdf/lib/qpdf.wasm"
   },
   "keywords": [
     "pdf",
